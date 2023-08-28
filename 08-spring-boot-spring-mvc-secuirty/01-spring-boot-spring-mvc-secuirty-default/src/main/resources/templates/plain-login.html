@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+  <style>
+    .alert{
+        color: red;
+    }
+  </style>
+</head>
+<body>
+<h1>Login Page</h1>
+<form action="#" th:action="@{/authenticateTheUser}" method="POST">
+  <!--
+    Burda th:if ile param.error varsa hata mesajı gösteriyoruz.
+    Bu hata mesajı spring security tarafından oluşturuluyor.
+   -->
+  <div th:if="${param.error}">
+    <div class="alert">
+      <i>Invalid username and password.</i>
+    </div>
+  </div>
+    <label for="username">Username</label>
+    <!-- Burda inputlardaki name kısmı username ve password olmak zorunda spring secuirty
+          buraya bakarak okuma yapıyor.
+     -->
+    <input type="text" id="username" name="username" placeholder="Username">
+    <br>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="Password">
+    <br>
+    <input type="submit" value="Login">
+</form>
+</body>
+</html>

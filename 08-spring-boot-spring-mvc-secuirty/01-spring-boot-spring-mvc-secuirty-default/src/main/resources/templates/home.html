@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- thymeleaf xmlns:sec import ediyoruz -->
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>Welcome page</p>
+
+    <div>
+        <p>User:
+            <!-- kullanıcı adı ve kullanıcının rolünü
+            principal.username ile spring securityden aldık -->
+            <span sec:authentication="principal.username"></span>
+            <br> <br>
+            Role :
+            <span sec:authentication="principal.authorities"></span>
+        </p>
+        <hr>
+        <!-- /leaders uzantısı için link ekleme... manager'lar için -->
+        <!-- sec:authorize="hasRole('MANAGER')" ile eğer manager ise div içerisi gözükür
+        browserda yetkili olmayan kullanıcı diğer divlerin içini göremez -->
+       <div sec:authorize="hasRole('MANAGER')">
+           <p>
+               <a th:href="@{/leaders}">Leadership Meeting</a>
+               (Only for Manager people)
+           </p>
+       </div>
+        <!-- /systems uzantısı için link ekleme... admin'ler için -->
+        <div sec:authorize="hasRole('ADMIN')">
+            <p>
+                <a th:href="@{/systems}">IT Systems Meeting</a>
+                (Only for Admin people)
+            </p>
+        </div>
+    </div>
+    <!-- Logout Button -->
+    <form action="#" th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout" />
+    </form>
+</body>
+</html>

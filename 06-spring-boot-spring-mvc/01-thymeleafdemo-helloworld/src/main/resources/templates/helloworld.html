@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add CSS and JS to Thymeleaf</title>
+    <link th:href="@{/css/demo.css}" rel="stylesheet" />
+</head>
+<body>
+    <p th:text="'Server time is , ' + ${theDate} + '!'" class="funny"/>
+</body>
+</html>
+
